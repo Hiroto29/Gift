@@ -1,0 +1,12 @@
+<h1>Souvenir</h1>
+<h3>お土産詳細</h3>
+<div class="souvenir">
+  <p>名前：<%= @souvenir.name %></p>
+  <p><%= @souvenir.prefecture %></p>
+  <p><%= @souvenir.adress %></p>
+  <p><%= @souvenir.about %></p>
+  <p><%= @souvenir.created_at %></p>
+</div>
+
+<%= link_to "お土産一覧に戻る", souvenirs_path %>
+<%= link_to "編集する", edit_souvenir_path(@souvenir.id) %>
