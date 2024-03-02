@@ -7,6 +7,44 @@
   <p><%= @souvenir.about %></p>
   <p><%= @souvenir.created_at %></p>
 </div>
-
+<h2>Google Map</h2>
+<div id='show-map'></div>
+<style>
+#show-map {
+  height: 400px;
+  width: 100%;
+}
+</style>
+<!-- JavaScript部分 -->
+<script>
+  function initShowMap() {
+    let showMap = new google.maps.Map(document.getElementById('show-map'), {
+      zoom: 12,
+      center: { lat: <%= @souvenir.lat %>, lng: <%= @souvenir.lng %> },
+      styles: [
+        {
+          stylers: [
+            { "saturation": 0 },
+            { "lightness": 0 }
+          ]
+        }
+      ]
+    });
+    // マーカーを表示
+    let marker = new google.maps.Marker({
+      position: { lat: <%= @souvenir.lat %>, lng: <%= @souvenir.lng %> },
+      map: showMap,
+      title: '<%= @souvenir.name %>'
+    });
+    // マーカーをクリックしたとき、詳細情報を表示
+    let infowindow = new google.maps.InfoWindow({
+      content: "<a href='<%= souvenir_url(@souvenir.id) %>'><%= @souvenir.name %></a>"
+    });
+    marker.addListener('click', function() {
+      infowindow.open(showMap, marker);
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkxCV4XGBt1l8ID4gCPcOBXv-Ny71LwLE&callback=initShowMap" async defer></script>
 <%= link_to "お土産一覧に戻る", souvenirs_path %>
 <%= link_to "編集する", edit_souvenir_path(@souvenir.id) %>

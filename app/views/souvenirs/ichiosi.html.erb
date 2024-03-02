@@ -1,13 +1,15 @@
 <div class="souvenirs-container">
   <% @souvenirs.each do |t| %>
-    <div class="souvenir">
-    <%= image_tag t.image_url, size: "250x200" if t.image? %>
-      <%= t.name %>
-      <%= t.prefecture %>
-      <%= t.adress %>
-      <%= t.about %>
-      <%= link_to "詳細へ", souvenir_path(t.id) %>
-      <%= link_to "編集する", edit_souvenir_path(t.id) %>
-      <%= button_to "削除する", souvenir_path(t.id), method: :delete %>
-    </div>
-  <% end %>
+  <div class="souvenir">
+  <%= image_tag t.image_url, size: "250x200" if t.image? %>
+    <%= t.name %>
+    <%= t.prefecture %>
+    <%= t.adress %>
+    <%= t.about %>
+    <%= link_to "詳細へ", souvenir_path(t.id) %>
+    <%= link_to "編集する", edit_souvenir_path(t.id) %>
+    <%= button_to "削除する", souvenir_path(t.id), method: :delete %>
+  </div>
+<% end %>
+<%= link_to "新規投稿へ", new_souvenir_path %>
+<%= link_to "お土産診断へ", perfumes_path %>

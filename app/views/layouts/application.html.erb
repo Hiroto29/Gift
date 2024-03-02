@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Gift</title>
+    <title>souvenir</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+        
   </head>
 
-  
- <body>
-  <header>
-   <h1>お土産</h1>
-   <div class="header-list">
-    <ul>
-     <% if user_signed_in? %>
-      <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-     <% else %>
-      <li><%= link_to "新規登録", new_user_registration_path %></li>
-      <li><%= link_to "ログイン", new_user_session_path %></li>
-     <% end %>
-    </ul>
-   </div>
-  </header>
-  <main>
-   <%= yield %>
-  </main>
- </body>
-  
+  <body>
+    <header>
+      <h1>お土産</h1>
+      <div class="header-list">
+      <ul>
+        <li><%= link_to "ログイン", souvenirs_path %></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "新規登録", new_user_registration_path %></li>
+        <li><%= link_to "ホーム", souvenirs_path %></li>
+        <li><%= link_to "新規投稿",new_souvenir_path %></li>
+      </ul>
+      </div>
+    </header>
+    <main>
+
+    <%= yield %>
+    </main>
+    <footer>
+      <p>Copyright © GeekSalon All Rights Reserved.</p>
+    </footer>
+  </body>
 </html>
