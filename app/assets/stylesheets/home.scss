@@ -1,0 +1,78 @@
+.slide {
+
+    z-index: -1;/*最背面に設定*/
+    top: 0;
+    right:0;
+    left:0;
+    bottom:0;
+    position   : relative;
+    overflow   : hidden;
+                      /* 画像のサイズに合わせて変更ください */
+    width      : 100%;
+    min-height     : 80vh;
+    margin     : auto;      /* サンプルは中央寄せの背景：白 */
+    background : #fff;
+    opacity: 0.6;
+    
+    
+  }
+   
+   /*=== 画像の設定 ======================================= */
+  .slide img {
+    display    : block;
+    position   : absolute;
+                        /* 画像のサイズを表示エリアに合せる */
+    width      : inherit;
+    height     : inherit;
+    opacity    : 0;
+    animation  : slideAnime 15s ease infinite;
+  }
+   
+   /*=== スライドのアニメーションを段差で開始する ========= */
+  .slide img:nth-of-type(1) { animation-delay: 0s }
+  .slide img:nth-of-type(2) { animation-delay: 3s }
+  .slide img:nth-of-type(3) { animation-delay: 6s }
+  .slide img:nth-of-type(4) { animation-delay: 9s }
+  .slide img:nth-of-type(5) { animation-delay: 12s }
+   
+   /*=== スライドのアニメーション ========================= */
+  @keyframes slideAnime{
+     0% { opacity: 0; transform: scale(.1, .1)}
+     2% { opacity: 1; transform: scale(1, 1)  }
+    18% { opacity: 1; transform: scale(1, 1)  }
+    20% { opacity: 0; transform: scale(2, 2)  }
+   100% { opacity: 0; transform: scale(2, 2)  }
+  }
+
+.aaa h1{
+    font-family: 'MS Mincho';
+    font-size: 50px;
+    writing-mode: vertical-rl;
+    z-index: 1;
+    top:40%;
+    left:48%;
+    position: absolute;
+    letter-spacing: 0.05em;
+}
+
+
+.slide{
+  height: 870px;
+}
+
+
+
+#video {
+  /*天地中央配置*/
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /*縦横幅指定*/
+  width: 177.77777778vh; /* 16:9 の幅→16 ÷ 9＝ 177.77% */
+  height: 56.25vw; /* 16:9の幅 → 9 ÷ 16 = 56.25% */
+  min-height: 100%;
+  min-width: 100%;
+}
+

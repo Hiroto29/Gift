@@ -1,11 +1,24 @@
 class SouvenirsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create]
 
+    def home
+    end
+
     def index
+      if params[:search].present?
+        search = params[:search]
+        @souvenirs = Souvenir.joins(:user).where("prefecture LIKE ?", "%#{search}%")
+      else
         @souvenirs = Souvenir.where.not(user_id: 2)
+      end
+    end
+
+    
+    def ichiosi
+        @souvenirs = Souvenir.where(user_id: 2)
         search = params[:search]
       if search.present?
-        @souvenirs = @souvenirs.joins(:user).where("name LIKE ?", "%#{search}%")
+        @souvenirs = @souvenirs.joins(:user).where("prefecture LIKE ?", "%#{search}%")
       end
     end
 
@@ -44,10 +57,6 @@ class SouvenirsController < ApplicationController
       souvenir = Souvenir.find(params[:id])
       souvenir.destroy
       redirect_to action: :index
-    end
-
-    def ichiosi
-      @souvenirs = Souvenir.where(user_id: 2)
     end
     
     private
