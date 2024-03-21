@@ -76,3 +76,8 @@
   min-width: 100%;
 }
 
+.no-scroll {
+  overflow: hidden; /* スクロールを無効にする */
+  height: 100%; /* 必要に応じて高さを設定 */
+}
+

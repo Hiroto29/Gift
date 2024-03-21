@@ -1,64 +1,46 @@
+<div class="form-center">
+  <h1>一覧ページ</h1>
 
-<h3>一覧ページ</h3>
-
-
-<%= form_tag({ controller: "souvenirs", action: "index" }, method: :get) do %>
-  <%= select_tag "prefecture", options_for_select([
-    ['北海道'], ['青森県'], ['岩手県'], ['宮城県'], ['秋田県'],
-    ['山形県'], ['福島県'], ['茨城県'], ['栃木県'], ['群馬県'],
-    ['埼玉県'], ['千葉県'], ['東京都'], ['神奈川県'], ['新潟県'],
-    ['富山県'], ['石川県'], ['福井県'], ['山梨県'], ['長野県'],
-    ['岐阜県'], ['静岡県'], ['愛知県'], ['三重県'], ['滋賀県'],
-    ['京都府'], ['大阪府'], ['兵庫県'], ['奈良県'], ['和歌山県'],
-    ['鳥取県'], ['島根県'], ['岡山県'], ['広島県'], ['山口県'],
-    ['徳島県'], ['香川県'], ['愛媛県'], ['高知県'], ['福岡県'],
-    ['佐賀県'], ['長崎県'], ['熊本県'], ['大分県'], ['宮崎県'],
-    ['鹿児島県'], ['沖縄県']
-  ]), prompt: '都道府県を選択' %>
-  <%= submit_tag '検索する' %>
-<% end %>
-
-<%= link_to "新規投稿へ", new_souvenir_path %>
-<%= link_to "診断", perfumes_path %>
-<div class="souvenirs-container">
-  <% @souvenirs.each do |t| %>
-    <div class="souvenir">
-      <%= image_tag t.image_url, size: "250x200" if t.image? %>
-      <%= t.name %>
-      <%= t.prefecture %>
-      <%= t.adress %>
-      <%= t.about.html_safe %>
-      <%= link_to "詳細へ", souvenir_path(t.id) %>
-      <%= link_to "編集する", edit_souvenir_path(t.id) %>
-      <%= button_to "削除する", souvenir_path(t.id), method: :delete %>
-    </div>
+  <%= form_tag({controller: "souvenirs", action: "index"}, method: :get) do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag '検索する' %>
   <% end %>
 </div>
 
+<div id="hot_photos_container" class="p-search_photo-search_container m-brick_container justified-gallery">
+  <% @souvenirs.each do |t| %>
+    <div class="souvenir">
+      <div class="home-image">
+        <%= link_to (t.image? ? image_tag(t.image_url, size: "250x200") : ''), souvenir_path(t.id) %>
+        <div class="souvenir-info">
+          <p><%= t.name %><br><%= t.prefecture %></p>
+        </div>
+      </div>
+    </div>
+          <!-- <%= link_to "詳細へ", souvenir_path(t.id) %> -->
+          <!-- <%= link_to "編集する", edit_souvenir_path(t.id) %> -->
+          <!-- <%= button_to "削除する", souvenir_path(t.id), method: :delete, data: { confirm: 'Are you sure?' } %> -->
+  <% end %>
+</div>
+
+
+    
+  
+
+
+
+
+
+
+
+
 <h2>gmap</h2>
-<div id='map'></div>
+<div id="map" style="height: 600px; width: 100%;"></div>
 
-<style>
-  #map {
-    height: 600px;
-    width: 100%;
-  }
-</style>
-
-<!-- js部分 -->
 <script>
   function initMap() {
-    // 初期表示位置を日本全体の中央に変更
     let latlng = new google.maps.LatLng(36.2048, 138.2529);
-    let styles = [
-      {
-        stylers: [
-          { "saturation": 0 },
-          { "lightness": 0 }
-        ]
-      }
-    ];
-
+    let styles = [{ stylers: [{ "saturation": 0 }, { "lightness": 0 }] }];
     let map = new google.maps.Map(document.getElementById('map'), {
       zoom: 5.6,
       styles: styles,
@@ -74,12 +56,9 @@
           position: markerLatLng,
           map: map
         });
-
         let infowindow = new google.maps.InfoWindow({
-          position: markerLatLng,
-          content: "<a href='<%= souvenir_url(souvenir.id) %>' target='_blank'><img src='<%= souvenir.image.url %>' alt='<%= souvenir.name %>'></a>"
+          content: "<a href='<%= souvenir_path(souvenir.id) %>' target='_blank'><img src='<%= souvenir.image_url %>' alt='<%= souvenir.name %>' style='width:120px;'></a>"
         });
-
         marker.addListener('click', function() {
           infowindow.open(map, marker);
         });
@@ -87,6 +66,4 @@
     <% end %>
   }
 </script>
-
-
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkxCV4XGBt1l8ID4gCPcOBXv-Ny71LwLE&callback=initMap" async defer></script>

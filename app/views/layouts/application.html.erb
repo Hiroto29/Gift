@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>souvenir</title>
+    <title>和游記</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,16 +15,17 @@
   <body>
     <header>
         <div class="header-list">
-        <h1>Souvenir</h1>
+        <h1></h1>
           <ul>
-            <% if user_signed_in? %>
-            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-            <%else%>
-            <li><%= link_to "ログイン", new_user_session_path %></li>
-            <li><%= link_to "新規登録", new_user_registration_path %></li>
-            <%end%>
+              <% if user_signed_in? %>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+              <%else%>
+              <li><%= link_to "ログイン", new_user_session_path %></li>
+              <li><%= link_to "新規登録", new_user_registration_path %></li>
+              <%end%>
             <li><%= link_to "ホーム", souvenirs_path %></li>
             <li><%= link_to "新規投稿",new_souvenir_path %></li>
+            <li><%= link_to "お土産診断", new_perfume_path %></li>
           </ul>
         </div>
       

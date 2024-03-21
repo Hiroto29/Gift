@@ -1,10 +1,36 @@
-  input[type="text"] {
-    width: 30%;
-    height: 20px;
-  }
-  input[type="submit"] {
-    width: 200px;
-    font-size: 20px;
-    margin-top: 50px;
-    margin-bottom: 30px;
-  }
+.field {
+  margin-bottom: 20px; /* 各フィールドの下のスペースを広げます */
+}
+
+.field label {
+  display: block; /* ラベルをブロック要素として表示し、下にスペースを作ります */
+  margin-bottom: 5px; /* ラベルと入力フィールドの間のスペース */
+  font-weight: bold; /* ラベルのテキストを太字にします */
+}
+
+input[type="text"], input[type="file"], select, textarea {
+  width: 100%; /* 入力フィールドの幅を広げて視覚的にわかりやすくします */
+  padding: 8px; /* 入力フィールドの内側のパディングを増やして、入力しやすくします */
+  margin-top: 5px; /* 入力フィールドの上のスペースを作ります */
+  box-sizing: border-box; /* パディングと境界線を含めて幅の合計を計算 */
+}
+
+input[type="submit"] {
+  width: auto; /* 送信ボタンの幅を内容に合わせて調整します */
+  padding: 10px 20px; /* 送信ボタンの内側のパディングを増やします */
+  font-size: 16px; /* 送信ボタンのフォントサイズを大きくします */
+  margin-top: 20px; /* 送信ボタンの上のスペースを広げます */
+  margin-bottom: 20px; /* 送信ボタンの下のスペースを広げます */
+  cursor: pointer; /* カーソルをポインタに変更して、クリック可能であることを示します */
+}
+
+.actions {
+  margin-top: 20px; /* アクションボタン（例：送信ボタン）の上のスペースを作ります */
+}
+
+/* 緯度と経度の入力フィールドをカスタマイズする追加スタイル */
+.actions input[type="text"] {
+  width: auto; /* 緯度と経度の入力フィールドの幅を自動に設定します */
+  display: inline-block; /* 緯度と経度の入力フィールドを横に並べます */
+  margin-right: 20px; /* 緯度と経度の入力フィールドの間にスペースを追加します */
+}

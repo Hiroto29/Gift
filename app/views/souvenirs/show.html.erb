@@ -1,12 +1,25 @@
-<h1>Souvenir</h1>
-<h3>お土産詳細</h3>
-<div class="souvenir">
-  <p>名前：<%= @souvenir.name %></p>
-  <p><%= @souvenir.prefecture %></p>
-  <p><%= @souvenir.adress %></p>
-  <p><%= @souvenir.about %></p>
-  <p><%= @souvenir.created_at %></p>
+<div class="souvenir-wrapper">
+  <%= image_tag @souvenir.image_url, size: "500x400" %>
+
+  <div class="souvenir-details">
+    <p><%= @souvenir.name %></p>
+    <p><%= @souvenir.prefecture %></p>
+    <p><%= @souvenir.adress %></p>
+    <div class="souvenir-divider"></div>
+    <p><%= @souvenir.about %></p>
+  </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
 <h2>Google Map</h2>
 <div id='show-map'></div>
 <style>

@@ -1,21 +1,19 @@
-
-<h3>新規投稿ページ</h3>
 <%= form_with(model: @souvenir, local: true) do |f| %>
 
   <div class="field">
-    <%= f.label :image %>
+    <%= f.label :画像 %>
     <%= f.file_field :image %>
   </div>
   
 
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label :名前 %>
     <%= f.text_field :name, :size => 30 %>
   </div>
 
   
   <div class="field">
-    <%= f.label :prefecture %>
+    <%= f.label :都道府県 %>
     <%= f.select :prefecture, 
                 [
                   ["北海道", "北海道"], ["青森県", "青森県"], ["岩手県", "岩手県"], ["宮城県", "宮城県"],
@@ -34,12 +32,12 @@
   </div>
 
   <div class="field">
-    <%= f.label :adress %>
+    <%= f.label :住所 %>
     <%= f.text_field :adress, :size => 30 %>
   </div>
 
   <div class="field">
-    <%= f.label :about  %>
+    <%= f.label :説明欄 %>
     <%= f.text_area :about, :size => "30x2" %>
   </div>
   

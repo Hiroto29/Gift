@@ -2,23 +2,184 @@
     width: 50%;
     margin: 10px auto;
   }
-  .h3 {
-    width: 100px;
-    margin: 30px auto;
-    text-align: center;
+
+  .form-center {
+    text-align: center; /* テキストやボタンを中央に揃える */
   }
-  .souvenir {
-    border-top: solid #00acee;
-    margin-top: 10px;
-    padding-top: 20px;
-  }
+  
+  .form-center form {
+    display: inline-block; /* フォーム要素をインラインブロックとして扱い、中央揃えを可能にする */
+    margin: 0 auto; /* 上下のマージンは0、左右のマージンは自動で中央揃え */
+    text-align: left; /* フォーム内のテキストは左揃え */
+  }  
+
   .main-box {
     margin: 5px 0;
     display: flex;
     justify-content: space-between;
   }
+
   .time {
     display: flex;
     justify-content: flex-end;
+  }
+
+  .home-image img:hover{
+    cursor: pointer;
+    transform: scale(1.05,1.05);
+  }
+
+  .home-image {
+    position: relative;
+    width: 250px;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .home-image img {
+      width: 100%;
+      height: auto;
+  }
+
+  .souvenir-info {
+    position: absolute;
+    bottom: 10px; /* 元々の位置 */
+    right: 10px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.6); /* 半透明の背景 */
+    padding: 5px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: right; /* テキストを右寄せ */
+    opacity: 0; /* デフォルトではテキストを非表示 */
+    transform: translateY(20px); /* デフォルトでは少し下に移動 */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* 透明度と位置の変化をスムーズに */
+  }
+
+  .home-image:hover .souvenir-info {
+    opacity: 1; /* 画像にホバーしたらテキストを表示 */
+    transform: translateY(0); /* 元の位置に戻す */
+  }
+
+  input[type="submit"], button, a {
+    font-family: "游ゴシック体", YuGothic, "Yu Gothic", 'Zen Kaku Gothic New', "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ",
+    Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+    /* 他のスタイルもここに追加可能 */
+  }
+
+  /* 追加スタイル例 */
+  input[type="submit"], button {
+      padding: 10px 20px; /* ボタンのパディングを調整 */
+      border: 1px solid #ddd; /* ボタンの境界線を定義 */
+      background-color: #f8f8f8; /* ボタンの背景色を設定 */
+      cursor: pointer; /* カーソルをポインタに変更 */
+      transition: background-color 0.3s; /* ホバー時の背景色の変化を滑らかに */
+  }
+
+  input[type="submit"]:hover, button:hover {
+      background-color: #e8e8e8; /* ホバー時の背景色 */
+  }
+  
+  /* 写真コンテナのスタイリング */
+  #hot_photos_container {
+    width: 100%; /* コンテナの幅を画面幅に合わせて調整 */
+    max-width: 1200px; /* 最大幅を設定 */
+    margin: 0 auto; /* 中央揃え */
+    height: auto; /* コンテナの高さを自動調整 */
+    overflow: hidden; /* はみ出したコンテンツを隠す */
+  }
+
+  /* 共通のスタイリングが適用されるクラス */
+  .p-search_photo-search_container {
+    padding: 15px; /* コンテナの内側に余白を設定 */
+  }
+
+  .m-brick_container {
+    display: flex; /* フレックスボックスを使用 */
+    flex-wrap: wrap; /* 要素を折り返し表示 */
+    justify-content: space-between; /* 要素の間に均等なスペースを設定 */
+  }
+
+  .justified-gallery {
+    display: grid; /* グリッドレイアウトを使用 */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 列の最小幅を250pxに設定し、利用可能な空間に基づいてフレックス */
+    grid-gap: 15px; /* グリッドアイテムの間隔 */
+  }
+
+  /* 各写真アイテムのスタイリング */
+  .m-brick_item {
+    position: relative; /* テキストの絶対配置の基準点 */
+    overflow: hidden; /* はみ出した画像の部分を隠す */
+    background-color: #f0f0f0; /* 写真がロードされるまでの背景色 */
+    border-radius: 8px; /* 角丸効果 */
+  }
+
+  .m-brick_item img {
+    width: 100%; /* 画像をコンテナの幅に合わせて拡大/縮小 */
+    height: auto; /* 画像の高さを自動調整 */
+    transition: transform 0.3s ease; /* ホバー時の拡大/縮小効果の速度 */
+  }
+
+  .m-brick_item:hover img {
+    transform: scale(1.05); /* ホバー時に画像をわずかに拡大 */
+  }
+
+  /* 写真情報テキストのスタイリング */
+  .m-brick_item-text {
+    position: absolute;
+    bottom: 10px; /* 下から10pxの位置に配置 */
+    left: 10px; /* 左から10pxの位置に配置 */
+    color: white; /* テキスト色 */
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明の黒背景 */
+    padding: 5px; /* パディング */
+    border-radius: 4px; /* 角丸効果 */
+    font-size: 14px; /* フォントサイズ */
+    transition: all 0.3s ease; /* ホバー効果のための遷移を追加 */
+    text-decoration: none; /* 下線を非表示に */
+  }
+
+  .m-brick_item-text:hover {
+    text-decoration: underline; /* ホバー時に下線を表示 */
+  }
+
+  a {
+    font-family: "游ゴシック体", YuGothic, "Yu Gothic", 'Zen Kaku Gothic New';
+    color: #fff; /* リンクのテキスト色を白に */
+    text-decoration: none; /* デフォルトの下線を削除 */
+    transition: text-decoration 0.3s ease-in-out; /* 下線の表示の遷移をスムーズに */
+  }
+
+  a:hover {
+      text-decoration: underline; /* ホバー時に下線を表示 */
+  }
+
+
+  .m-brick_item-text {
+    position: relative;
+    font-size: 15px; /* フォントサイズを設定 */
+    line-height: 1; /* 行の高さを設定 */
+    letter-spacing: 0.22em; /* 文字の間隔を設定 */
+    font-weight: bold; /* フォントを太文字に */
+    color: #fff; /* 文字色を白色に */
+    text-decoration: none; /* 下線を削除 */
+    transition: background-color 0.3s, text-decoration 0.3s; /* 背景色と下線の変化を滑らかに */
+  }
+  
+  .m-brick_item-text::after {
+    content: ''; /* 擬似要素のコンテンツ */
+    display: block; /* ブロックレベルの要素として表示 */
+    width: 100%; /* 下線の幅を要素の幅に合わせる */
+    height: 2px; /* 下線の高さ */
+    background: #fff; /* 下線の色を白色に */
+    transition: height 0.3s; /* 下線の高さの変化を滑らかに */
+    position: absolute; /* 絶対位置指定 */
+    left: 0; /* 左端からの位置 */
+    bottom: -5px; /* 要素の下端からの距離 */
+    height: 0; /* デフォルトでは下線を表示しない */
+  }
+  
+  .m-brick_item-text:hover::after {
+    height: 2px; /* ホバー時の下線の高さ */
   }
   
